@@ -1,5 +1,4 @@
 import React from "react";
-import Image from 'next/image'; // Import Next.js Image component for optimization
 
 // Footer Component
 export default function Footer() {
@@ -10,18 +9,12 @@ export default function Footer() {
             <div className="container mx-auto px-4 text-center">
                 {/* Logo */}
                 <div className="mb-4"> {/* Add margin below the logo */}
-                    <Image
-                        src="/IDC_logo1.png"
-                        alt="Company Logo"
-                        width={100} // Specify a base width
-                        height={24} // Specify a base height (adjust aspect ratio as needed)
-                        className="mx-auto h-6 md:h-8" // Adjust height and centering
-                    />
+                    <img src="/IDC_logo1.png" alt="Company Logo" className="h-80 md:h-96 mx-auto" /> {/* Match Hero section size */}
                 </div>
 
                 {/* Copyright Text */}
                 <p className="text-sm">
-                    &copy; {currentYear} Your Company Name. All rights reserved.
+                    &copy; {currentYear} Informática Dirigida y Computadoras S.A. de C.V. Todos los derechos reservados.
                     {/* Optional: Add links like Privacy Policy or Terms */}
                     {/* | <a href="/privacy" className="hover:text-slate-200 transition-colors">Privacy Policy</a> */}
                 </p>

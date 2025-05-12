@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { Code, LayoutTemplate, ShoppingCart, Wrench } from "lucide-react"; // Example icons
+import { Code, LayoutTemplate, CloudDownload, Wrench, CheckCircle } from "lucide-react"; // Added CheckCircle
 
 // Define the structure for a service item
 interface ServiceItem {
@@ -17,28 +17,52 @@ interface ServiceItem {
 const services: ServiceItem[] = [
     {
         icon: LayoutTemplate,
-        title: "Modern Web Design",
-        description: "Visually stunning, user-centric designs.",
-        benefit: "Captivate Your Audience",
+        title: "Prácticas de Diseño Moderno",
+        description: "Diseño funcional y centrado en el usuario.",
+        benefit: "Faciliadad de Uso y Navegación",
     },
     {
         icon: Code,
-        title: "Custom Development",
-        description: "Tailored solutions built with cutting-edge tech.",
-        benefit: "Achieve Your Unique Goals",
+        title: "Desarrollo Personalizado",
+        description: "Software a la medida de tus necesidades.",
+        benefit: "Soluciona tu Problema con Software",
     },
     {
-        icon: ShoppingCart,
-        title: "E-commerce Solutions",
-        description: "Scalable online stores that convert.",
-        benefit: "Boost Your Online Sales",
+        icon: CloudDownload,
+        title: "Libre de Proceses Anticuados",
+        description: "Sistema web para acceder desde cualquier lugar.",
+        benefit: "Simplifica la Administración",
     },
     {
         icon: Wrench,
-        title: "Maintenance & Support",
-        description: "Reliable support to keep your site running smoothly.",
-        benefit: "Ensure Peak Performance",
+        title: "Soporte Técnico en Línea",
+        description: "Cambios, mejoras y solución de errores online.",
+        benefit: "Sin Paros en tu Empresa",
     },
+];
+
+// List of software capabilities for the scrolling animation
+const softwareCapabilities: string[] = [
+    "Catálogo de Clientes",
+    "Control de Inventario",
+    "Gestión de Ventas",
+    "Administración de Compras",
+    "Gestión de Proveedores",
+    "Catálogo de Productos",
+    "Historial de Ventas",
+    "Procesamiento de Pedidos",
+    "Gestión de Empleados",
+    "Control de Gastos",
+    "Reportes y Análisis",
+    "Ticketing",
+    "Punto de Venta",
+    "Calendario de Citas",
+    "Cotizaciones",
+    "Mensajes Automáticos",
+    "Recordatorios Automáticos",
+    "Bases de Datos",
+    "Migración de Datos",
+    "Integración Sistema Existente",
 ];
 
 // Animation variants for staggering children
@@ -78,24 +102,56 @@ export default function ServicesSection() {
                     </p>
                 </motion.div>
 
-                {/* Added video element with animation (restored motion wrapper) */}
-                <motion.div
-                    variants={itemVariants} // Use existing item variants for consistency
-                    className="my-8 md:my-12" // Add margin top/bottom
-                >
-                    <video
-                        src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4" // Test video URL
-                        autoPlay
-                        loop
-                        muted
-                        playsInline // Important for mobile playback
-                        className="rounded-lg shadow-lg w-full max-w-4xl mx-auto" // Styling
+                {/* New Row: Video on Left, Scrolling List on Right */}
+                <div className="flex flex-col md:flex-row gap-8 md:gap-12 my-12 md:my-16 items-center">
+                    {/* Video Section (Left) - Updated Width */}
+                    <motion.div
+                        variants={itemVariants}
+                        className="w-full md:w-[70%]" // Explicit 70% width
                     >
-                        Your browser does not support the video tag.
-                    </video>
-                </motion.div>
+                        <video
+                            src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4" // Test video URL
+                            autoPlay
+                            loop
+                            muted
+                            playsInline // Important for mobile playback
+                            className="rounded-lg shadow-lg w-full" // Removed max-w and mx-auto
+                        >
+                            Your browser does not support the video tag.
+                        </video>
+                    </motion.div>
 
-                {/* Grid for Service Cards */}
+                    {/* Infinite Scrolling List Section (Right) - Updated Width, Title Moved, Styling Changed */}
+                    <div className="w-full md:w-[30%] flex flex-col items-center md:items-start"> {/* Explicit 30% width and flex container for title */}
+                        <h3 className="text-xl font-semibold text-slate-700 mb-4 text-center md:items-start">Alcance de Desarrollo</h3> {/* Title remains here */}
+                        <motion.div
+                            variants={itemVariants}
+                            className="w-full h-64 md:h-80 overflow-hidden relative [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]" // Added gradient mask
+                        >
+                            <motion.ul
+                                className="absolute top-0 left-0 w-full"
+                                animate={{
+                                    translateY: ["0%", "-50%"], // Animate from start to the point where the duplicated list starts
+                                }}
+                                transition={{
+                                    duration: 20, // Adjust duration for speed (longer = slower)
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                }}
+                            >
+                                {/* Duplicate the list for seamless looping */}
+                                {[...softwareCapabilities, ...softwareCapabilities].map((capability, index) => (
+                                    <li key={index} className="flex items-center text-slate-600 py-2"> {/* Removed px-4 and border */}
+                                        <CheckCircle className="h-5 w-5 text-blue-500 mr-3 flex-shrink-0" />
+                                        <span>{capability}</span>
+                                    </li>
+                                ))}
+                            </motion.ul>
+                        </motion.div>
+                    </div>
+                </div> {/* Closing tag for the flex row */}
+
+                {/* Grid for Service Cards (Remains below) */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -120,7 +176,7 @@ export default function ServicesSection() {
                         </motion.div>
                     ))}
                 </motion.div>
-            </div>
+            </div> {/* Closing tag for the container div */}
         </section>
     );
 }

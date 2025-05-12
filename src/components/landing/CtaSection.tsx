@@ -27,7 +27,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2 } from "lucide-react"; // For loading state
+import { Loader2, Mail, Phone } from "lucide-react"; // Import Mail and Phone icons
 
 // Define the form schema using Zod
 const formSchema = z.object({
@@ -91,10 +91,10 @@ export default function CtaSection() {
                 className="container mx-auto px-4 text-center"
             >
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                    Ready to Start Your Project?
+                    Listo para empezar tu proyecto?
                 </h2>
                 <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-                    Let's discuss how we can bring your vision to life. Get in touch today for a free consultation and quote.
+                    Contáctanos hoy mismo y descubre cómo podemos ayudarte a llevar tu negocio al siguiente nivel.
                 </p>
 
                 <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -106,7 +106,7 @@ export default function CtaSection() {
                     >
                         <DialogTrigger asChild>
                             <Button size="lg" variant="secondary" className="bg-white text-blue-700 hover:bg-slate-100">
-                                Request a Free Quote
+                                Digitaliza tu Empresa
                             </Button>
                         </DialogTrigger>
                     </motion.div>
@@ -180,6 +180,37 @@ export default function CtaSection() {
                         </Form>
                     </DialogContent>
                 </Dialog>
+
+                {/* Added Contact Information Section */}
+                <div className="mt-12">
+                    <h3 className="text-2xl font-semibold mb-6">
+                        Dagoberto Cruz x2
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-xl mx-auto text-left">
+                        {/* Column 1 */}
+                        <div className="space-y-3">
+                            <a href="mailto:alandago@hotmail.com" className="flex items-center hover:underline">
+                                <Mail className="mr-2 h-5 w-5" />
+                                alandago@hotmail.com
+                            </a>
+                            <a href="tel:6421076483" className="flex items-center hover:underline">
+                                <Phone className="mr-2 h-5 w-5" />
+                                642 107 6483
+                            </a>
+                        </div>
+                        {/* Column 2 */}
+                        <div className="space-y-3">
+                            <a href="mailto:Licdagobertocruz@hotmail.com" className="flex items-center hover:underline">
+                                <Mail className="mr-2 h-5 w-5" />
+                                Licdagobertocruz@hotmail.com
+                            </a>
+                            <a href="tel:6421166506" className="flex items-center hover:underline">
+                                <Phone className="mr-2 h-5 w-5" />
+                                642 116 6506
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </motion.div>
         </section>
     );
