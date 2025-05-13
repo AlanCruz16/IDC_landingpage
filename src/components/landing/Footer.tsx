@@ -5,10 +5,10 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="py-8 md:py-12 bg-slate-800 text-slate-400"> {/* Increased padding a bit */}
+        <footer className="pb-4 md:pb-6 bg-slate-800 text-slate-400"> {/* Removed top padding */}
             <div className="container mx-auto px-4 text-center">
                 {/* Logo */}
-                <div className="mb-4"> {/* Add margin below the logo */}
+                <div className="mb-0"> {/* Reduced margin below the logo */}
                     <img src="/IDC_logo1.png" alt="Company Logo" className="h-80 md:h-96 mx-auto" /> {/* Match Hero section size */}
                 </div>
 

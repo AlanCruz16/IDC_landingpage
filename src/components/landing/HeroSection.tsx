@@ -2,8 +2,10 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+// Button component is now part of ContactInfoModal trigger
+// import { Button } from "@/components/ui/button"; 
 import { ArrowRight } from "lucide-react"; // Example icon
+import ContactInfoModal from "@/components/landing/ContactInfoModal";
 
 // Hero Section Component
 export default function HeroSection() {
@@ -54,10 +56,16 @@ export default function HeroSection() {
                     whileHover={{ scale: 1.05 }} // Add hover effect
                     whileTap={{ scale: 0.95 }}   // Add tap effect
                 >
-                    <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white">
-                        Digitaliza tu Empresa
-                        <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
+                    <ContactInfoModal
+                        triggerButtonText={
+                            <>
+                                Digitaliza tu Empresa
+                                <ArrowRight className="ml-2 h-5 w-5" />
+                            </>
+                        }
+                        triggerButtonVariant="default"
+                        triggerButtonClassName="bg-blue-600 hover:bg-blue-700 text-white text-lg px-6 py-3" // Matched size="lg" approx
+                    />
                 </motion.div>
             </div>
 

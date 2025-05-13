@@ -12,7 +12,7 @@ export default function LandingPage() {
       <HeroSection />
       <ServicesSection />
       <ContpaqiSection /> {/* Use the new section */}
-      <ProcessSection />
+      {/* <ProcessSection /> */}
       <CtaSection />
       <Footer />
     </main>

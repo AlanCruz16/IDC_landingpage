@@ -1,48 +1,40 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react"; // useState removed as form is gone
 import { motion } from "framer-motion";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import * as z from "zod";
+// Zod, react-hook-form, and related UI components for form are removed
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { useForm } from "react-hook-form";
+// import * as z from "zod";
 
-import { Button } from "@/components/ui/button";
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-    DialogClose, // Import DialogClose
-} from "@/components/ui/dialog";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Loader2, Mail, Phone } from "lucide-react"; // Import Mail and Phone icons
+// Button is used by ContactInfoModal, Dialog and related components are also part of ContactInfoModal
+// import { Button } from "@/components/ui/button";
+// import {
+//     Dialog,
+//     DialogContent,
+//     DialogDescription,
+//     DialogFooter,
+//     DialogHeader,
+//     DialogTitle,
+//     DialogTrigger,
+//     DialogClose,
+// } from "@/components/ui/dialog";
+// import {
+//     Form,
+//     FormControl,
+//     FormField,
+//     FormItem,
+//     FormLabel,
+//     FormMessage,
+// } from "@/components/ui/form";
+// import { Input } from "@/components/ui/input";
+// import { Textarea } from "@/components/ui/textarea";
+// import { Loader2 } from "lucide-react"; // Loader2 was for form submission
+import { Mail, Phone } from "lucide-react"; // Mail and Phone icons are still used for direct links
+import ContactInfoModal from "@/components/landing/ContactInfoModal"; // Import the new modal
 
-// Define the form schema using Zod
-const formSchema = z.object({
-    name: z.string().min(2, {
-        message: "Name must be at least 2 characters.",
-    }),
-    email: z.string().email({
-        message: "Please enter a valid email address.",
-    }),
-    message: z.string().min(10, {
-        message: "Message must be at least 10 characters.",
-    }).max(500, {
-        message: "Message must not exceed 500 characters.",
-    }),
-});
+// Form schema is removed
+// const formSchema = z.object({ ... });
 
 // Animation variants
 const sectionVariants = {
@@ -52,37 +44,18 @@ const sectionVariants = {
 
 // CTA Section Component
 export default function CtaSection() {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isDialogOpen, setIsDialogOpen] = useState(false); // Control dialog state
+    // State for form submission and dialog control is removed as form is gone
+    // const [isSubmitting, setIsSubmitting] = useState(false);
+    // const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-    // Initialize react-hook-form
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            name: "",
-            email: "",
-            message: "",
-        },
-    });
+    // react-hook-form initialization is removed
+    // const form = useForm<z.infer<typeof formSchema>>({ ... });
 
-    // Handle form submission
-    async function onSubmit(values: z.infer<typeof formSchema>) {
-        setIsSubmitting(true);
-        console.log("Form Submitted:", values); // Placeholder for actual submission
-
-        // Simulate API call delay
-        await new Promise(resolve => setTimeout(resolve, 1500));
-
-        setIsSubmitting(false);
-        form.reset(); // Reset form fields
-        setIsDialogOpen(false); // Close the dialog on successful submission
-
-        // Optional: Show a success message/toast here
-        alert("Thank you! Your message has been sent.");
-    }
+    // onSubmit function is removed
+    // async function onSubmit(values: z.infer<typeof formSchema>) { ... }
 
     return (
-        <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+        <section className="py-16 md:py-24 bg-gradient-to-r from-blue-600 to-indigo-700 text-white"> {/* Matched top and bottom padding */}
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -97,91 +70,20 @@ export default function CtaSection() {
                     Contáctanos hoy mismo y descubre cómo podemos ayudarte a llevar tu negocio al siguiente nivel.
                 </p>
 
-                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-                    {/* Wrap DialogTrigger with motion.div for animation */}
-                    <motion.div
-                        className="inline-block" // Keep button layout
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <DialogTrigger asChild>
-                            <Button size="lg" variant="secondary" className="bg-white text-blue-700 hover:bg-slate-100">
-                                Digitaliza tu Empresa
-                            </Button>
-                        </DialogTrigger>
-                    </motion.div>
-                    <DialogContent className="sm:max-w-[480px]">
-                        <DialogHeader>
-                            <DialogTitle className="text-2xl">Get Your Free Quote</DialogTitle>
-                            <DialogDescription>
-                                Fill out the form below, and we'll get back to you shortly to discuss your project.
-                            </DialogDescription>
-                        </DialogHeader>
-                        <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 py-4">
-                                <FormField
-                                    control={form.control}
-                                    name="name"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Name</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Your Name" {...field} disabled={isSubmitting} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="email"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Email</FormLabel>
-                                            <FormControl>
-                                                <Input type="email" placeholder="your.email@example.com" {...field} disabled={isSubmitting} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="message"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Message</FormLabel>
-                                            <FormControl>
-                                                <Textarea
-                                                    placeholder="Tell us about your project..."
-                                                    className="resize-none"
-                                                    rows={5}
-                                                    {...field}
-                                                    disabled={isSubmitting}
-                                                />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <DialogFooter>
-                                    {/* Add DialogClose for the Cancel button */}
-                                    <DialogClose asChild>
-                                        <Button type="button" variant="outline" disabled={isSubmitting}>
-                                            Cancel
-                                        </Button>
-                                    </DialogClose>
-                                    <Button type="submit" disabled={isSubmitting}>
-                                        {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                                        {isSubmitting ? "Sending..." : "Send Message"}
-                                    </Button>
-                                </DialogFooter>
-                            </form>
-                        </Form>
-                    </DialogContent>
-                </Dialog>
+                {/* Replaced Dialog with ContactInfoModal */}
+                <motion.div
+                    className="inline-block" // Keep button layout
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    <ContactInfoModal
+                        triggerButtonText="Digitaliza tu Empresa"
+                        triggerButtonVariant="secondary"
+                        triggerButtonClassName="bg-white text-blue-700 hover:bg-slate-100 text-lg px-6 py-3" // Matched size="lg" approx
+                    />
+                </motion.div>
 
-                {/* Added Contact Information Section */}
+                {/* Contact Information Section remains */}
                 <div className="mt-12">
                     <h3 className="text-2xl font-semibold mb-6">
                         Dagoberto Cruz x2

@@ -2,6 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import MuxPlayer from "@mux/mux-player-react"; // Added MuxPlayer import
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Code, LayoutTemplate, CloudDownload, Wrench, CheckCircle } from "lucide-react"; // Added CheckCircle
 
@@ -109,16 +110,18 @@ export default function ServicesSection() {
                         variants={itemVariants}
                         className="w-full md:w-[70%]" // Explicit 70% width
                     >
-                        <video
-                            src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/360/Big_Buck_Bunny_360_10s_1MB.mp4" // Test video URL
+                        <MuxPlayer
+                            playbackId="j5vH5cHpYbr8NMClhLpMibsMWqxAPSKwcFFU7F01crsM"
+                            metadata={{
+                                video_title: 'IDC Services Video', // Updated title
+                                viewer_user_id: 'user-id-services-section', // Example viewer ID
+                            }}
                             autoPlay
                             loop
                             muted
-                            playsInline // Important for mobile playback
-                            className="rounded-lg shadow-lg w-full" // Removed max-w and mx-auto
-                        >
-                            Your browser does not support the video tag.
-                        </video>
+                            playsInline
+                            className="rounded-lg shadow-lg w-full"
+                        />
                     </motion.div>
 
                     {/* Infinite Scrolling List Section (Right) - Updated Width, Title Moved, Styling Changed */}
