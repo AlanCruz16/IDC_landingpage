@@ -1,7 +1,7 @@
 import HeroSection from "@/components/landing/HeroSection";
 import ServicesSection from "@/components/landing/ServicesSection";
 import ContpaqiSection from "@/components/landing/ContpaqiSection"; // Import the new section
-import ProcessSection from "@/components/landing/ProcessSection";
+// import ProcessSection from "@/components/landing/ProcessSection";
 import CtaSection from "@/components/landing/CtaSection";
 import Footer from "@/components/landing/Footer";
 
