@@ -1,8 +1,6 @@
 import React from 'react';
 
-interface WhatsappIconProps extends React.SVGProps<SVGSVGElement> { }
-
-const WhatsappIcon: React.FC<WhatsappIconProps> = (props) => (
+const WhatsappIcon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     <svg
         viewBox="0 0 24 24"
         fill="currentColor"

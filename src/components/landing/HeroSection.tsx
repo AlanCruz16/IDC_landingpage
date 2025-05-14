@@ -1,6 +1,7 @@
 "use client"; // Required for Framer Motion and event handlers
 
 import React from "react";
+import Image from "next/image"; // Added import
 import { motion } from "framer-motion";
 // Button component is now part of ContactInfoModal trigger
 // import { Button } from "@/components/ui/button"; 
@@ -25,7 +26,13 @@ export default function HeroSection() {
                     transition={{ duration: 0.5, delay: 0.1 }}
                     className="mb-4 md:mb-4" // Reduced margin below logo
                 >
-                    <img src="/IDC_logo1.png" alt="Company Logo" className="h-80 md:h-96 mx-auto" /> {/* Approx 1.5x larger and centered */}
+                    <Image
+                        src="/IDC_logo1.png"
+                        alt="Company Logo"
+                        width={500} // Provide base width for aspect ratio calculation
+                        height={500} // Provide base height for aspect ratio calculation
+                        className="h-80 md:h-96 w-auto mx-auto" // Responsive height, auto width, centered
+                    />
                 </motion.div>
 
                 {/* Animated Headline */}
