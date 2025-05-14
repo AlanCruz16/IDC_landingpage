@@ -86,9 +86,9 @@ export default function SocialProofSection() {
                     <h2 className="text-3xl md:text-4xl font-bold mb-4 text-slate-800">
                         Trusted by Businesses Like Yours
                     </h2>
-                    <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                    {/*  <p className="text-lg text-slate-600 max-w-2xl mx-auto">
                         Don't just take our word for it. See what our clients have to say about our work.
-                    </p>
+                    </p> */}
                 </motion.div>
 
                 {/* Testimonials Grid */}
@@ -112,20 +112,21 @@ export default function SocialProofSection() {
                                             {Array.from({ length: 5 }).map((_, i) => (
                                                 <Star
                                                     key={i}
+                                                    // eslint-disable-next-line react/no-unescaped-entities
                                                     className={`h-5 w-5 ${i < testimonial.rating! ? "text-yellow-400 fill-yellow-400" : "text-slate-300"
                                                         }`}
                                                 />
                                             ))}
                                         </div>
                                     )}
-                                    <p className="text-slate-700 italic mb-4 flex-grow">"{testimonial.quote}"</p>
+                                    {/*  <p className="text-slate-700 italic mb-4 flex-grow">"{testimonial.quote}"</p>
                                     <div className="mt-auto">
                                         <p className="font-semibold text-slate-800">{testimonial.name}</p>
                                         <p className="text-sm text-slate-500">
                                             {testimonial.title}
                                             {testimonial.company && `, ${testimonial.company}`}
                                         </p>
-                                    </div>
+                                    </div> */}
                                 </CardContent>
                             </Card>
                         </motion.div>
@@ -148,6 +149,7 @@ export default function SocialProofSection() {
                             <motion.div
                                 key={index}
                                 variants={itemVariants} // Reuse item variant for simple fade-in
+                                // eslint-disable-next-line react/no-unescaped-entities
                                 whileHover={{ scale: 1.1, transition: { duration: 0.2 } }} // Add hover scale effect
                                 className={`h-10 w-24 md:h-12 md:w-32 ${logo.placeholder} rounded flex items-center justify-center text-xs text-slate-500`}
                                 title={logo.name} // Tooltip for accessibility
